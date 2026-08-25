@@ -25,5 +25,21 @@ O fluxo de dados segue a arquitetura moderna de plataformas de dados:
 * **Data Warehouse:** Google Cloud BigQuery
 * **Camada de BI:** Google Looker Studio
 * **Segurança:** Python-dotenv (Variáveis de ambiente)
+* **Painel de Visualização:** Streamlit
+
+---
+
+## Painel Streamlit
+
+O projeto conta com um painel simples em Streamlit (`streamlit_app.py`) para coletar artigos e, opcionalmente, enviá-los ao BigQuery pela interface.
+
+Para rodar:
+
+```bash
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
+
+O checkbox **"Enviar para o BigQuery"** só funciona se as credenciais do BigQuery estiverem configuradas no arquivo `.env` (variáveis `GOOGLE_APPLICATION_CREDENTIALS` e `ID_PROJETO`, veja `.env.example`). Sem essas credenciais, o painel ainda permite coletar e visualizar os artigos, mas o envio ao BigQuery falhará e o erro será exibido na tela.
 
 ---

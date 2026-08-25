@@ -1,0 +1,6 @@
+feedparser
+pandas
+google-cloud-bigquery
+python-dotenv
+pytest
+streamlit
