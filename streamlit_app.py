@@ -1,5 +1,17 @@
 import io
+import os
 from contextlib import redirect_stdout
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Carrega o .env e converte o caminho das credenciais para absoluto
+BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR / ".env")
+
+cred = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+if cred and not Path(cred).is_absolute():
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(BASE_DIR / cred)
 
 import streamlit as st
 
@@ -10,7 +22,7 @@ st.set_page_config(page_title="Pipeline Medium -> BigQuery", page_icon="📰")
 
 st.title("📰 Pipeline Medium -> BigQuery")
 
-tag = st.text_input("Tag do Medium", value="python")
+tag = st.text_input("Tag do Medium", value="data-structure")
 enviar_bigquery = st.checkbox("Enviar para o BigQuery", value=False)
 coletar = st.button("Coletar artigos")
 
